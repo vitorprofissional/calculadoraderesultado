@@ -32,7 +32,7 @@
             appearance: none;
             width: 20px;
             height: 20px;
-            background: #3b82f6; /* blue-500 */
+            background: #7c3aed; /* purple-600 */
             cursor: pointer;
             border-radius: 50%;
             border: 2px solid white;
@@ -41,14 +41,14 @@
         input[type="range"]::-moz-range-thumb {
             width: 20px;
             height: 20px;
-            background: #3b82f6; /* blue-500 */
+            background: #7c3aed; /* purple-600 */
             cursor: pointer;
             border-radius: 50%;
             border: 2px solid white;
             box-shadow: 0 0 5px rgba(0,0,0,0.2);
         }
         .result-card {
-            background-color: #1e3a8a; /* blue-900 */
+            background-color: #4c1d95; /* purple-900 */
         }
         .result-card-grid {
             display: grid;
@@ -63,7 +63,7 @@
         <!-- Header -->
         <div class="text-center mb-8">
             <h1 class="text-2xl md:text-3xl font-bold text-slate-800">Saiba definir suas metas de vendas com nossa</h1>
-            <h2 class="text-3xl md:text-4xl font-bold text-emerald-500 mt-1">Calculadora de Resultados</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-purple-600 mt-1">Calculadora de Resultados</h2>
         </div>
 
         <!-- Main Content: Calculator -->
@@ -78,7 +78,7 @@
                     <label for="investimento" class="block text-sm font-medium text-slate-600 mb-1">Investimento Mensal</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
-                        <input type="number" id="investimento" value="4000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <input type="number" id="investimento" value="4000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition">
                     </div>
                 </div>
 
@@ -87,7 +87,7 @@
                     <label for="cpl" class="block text-sm font-medium text-slate-600 mb-1">Custo por Lead (CPL)</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
-                        <input type="number" id="cpl" value="25" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <input type="number" id="cpl" value="25" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition">
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
                 <div class="mb-5">
                     <div class="flex justify-between items-center mb-1">
                         <label for="taxaAgendamento" class="text-sm font-medium text-slate-600">Taxa de Agendamento</label>
-                        <span id="taxaAgendamentoValue" class="text-sm font-bold text-blue-600">25%</span>
+                        <span id="taxaAgendamentoValue" class="text-sm font-bold text-purple-600">25%</span>
                     </div>
                     <input type="range" id="taxaAgendamento" min="0" max="100" value="25" class="w-full">
                 </div>
@@ -104,7 +104,7 @@
                 <div class="mb-5">
                     <div class="flex justify-between items-center mb-1">
                         <label for="taxaComparecimento" class="text-sm font-medium text-slate-600">Taxa de Comparecimento</label>
-                        <span id="taxaComparecimentoValue" class="text-sm font-bold text-blue-600">50%</span>
+                        <span id="taxaComparecimentoValue" class="text-sm font-bold text-purple-600">50%</span>
                     </div>
                     <input type="range" id="taxaComparecimento" min="0" max="100" value="50" class="w-full">
                 </div>
@@ -113,7 +113,7 @@
                 <div class="mb-5">
                     <div class="flex justify-between items-center mb-1">
                         <label for="taxaConversao" class="text-sm font-medium text-slate-600">Taxa de Conversão (Venda)</label>
-                        <span id="taxaConversaoValue" class="text-sm font-bold text-blue-600">40%</span>
+                        <span id="taxaConversaoValue" class="text-sm font-bold text-purple-600">40%</span>
                     </div>
                     <input type="range" id="taxaConversao" min="0" max="100" value="40" class="w-full">
                 </div>
@@ -123,7 +123,7 @@
                     <label for="ticketMedio" class="block text-sm font-medium text-slate-600 mb-1">Ticket Médio</label>
                     <div class="relative">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
-                        <input type="number" id="ticketMedio" value="2000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <input type="number" id="ticketMedio" value="2000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition">
                     </div>
                 </div>
             </div>
@@ -133,37 +133,37 @@
                 <h3 class="text-xl font-semibold text-center mb-4">RESULTADO MENSAL</h3>
                 
                 <div class="result-card-grid mb-6">
-                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                    <div class="bg-purple-800 p-4 rounded-lg text-center">
                         <div id="resultLeads" class="text-3xl font-bold">160</div>
                         <div class="text-sm opacity-80">LEADS</div>
                     </div>
-                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                    <div class="bg-purple-800 p-4 rounded-lg text-center">
                         <div id="resultOportunidades" class="text-3xl font-bold">40</div>
                         <div class="text-sm opacity-80">OPORTUNIDADES</div>
                     </div>
-                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                    <div class="bg-purple-800 p-4 rounded-lg text-center">
                         <div id="resultComparecimento" class="text-3xl font-bold">20</div>
                         <div class="text-sm opacity-80">COMPARECIMENTOS</div>
                     </div>
-                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                    <div class="bg-purple-800 p-4 rounded-lg text-center">
                         <div id="resultClientes" class="text-3xl font-bold">8</div>
                         <div class="text-sm opacity-80">CLIENTES</div>
                     </div>
                 </div>
 
-                <div class="bg-blue-800/70 p-4 rounded-lg flex-grow">
+                <div class="bg-purple-800/70 p-4 rounded-lg flex-grow">
                     <h4 class="font-semibold mb-3 text-center">Resumo do Funil de Vendas</h4>
                     <div class="space-y-2 text-sm">
                         <div class="flex justify-between">
                             <span class="opacity-80">Faturamento</span>
                             <span id="resultFaturamento" class="font-semibold">R$ 16.000</span>
                         </div>
-                        <hr class="border-blue-700">
+                        <hr class="border-purple-700">
                         <div class="flex justify-between">
                             <span class="opacity-80">Lucro</span>
                             <span id="resultLucro" class="font-semibold">R$ 12.000</span>
                         </div>
-                        <hr class="border-blue-700">
+                        <hr class="border-purple-700">
                         <div class="flex justify-between items-center mt-4">
                             <span class="text-lg font-bold">ROI</span>
                             <span id="resultROI" class="text-2xl font-bold text-emerald-400">300%</span>
@@ -175,7 +175,7 @@
 
         <!-- Footer / CTA -->
         <div class="text-center mt-8">
-            <button id="ctaButton" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-md">
+            <button id="ctaButton" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-md">
                 CADASTRE-SE E RECEBA O LINK
             </button>
             <div class="mt-4 flex justify-center">
@@ -189,7 +189,7 @@
         <div class="bg-white rounded-lg shadow-xl p-8 max-w-sm w-full text-center">
             <h3 class="text-xl font-bold text-slate-800 mb-2">Cadastro em Breve!</h3>
             <p class="text-slate-600 mb-6">Esta funcionalidade está em desenvolvimento. Em breve, você poderá receber as simulações por e-mail!</p>
-            <button id="closeModal" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition">Entendi</button>
+            <button id="closeModal" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-6 rounded-lg transition">Entendi</button>
         </div>
     </div>
 
