@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Metas de Vendas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for sliders */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0; /* gray-200 */
+            border-radius: 9999px;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+        input[type="range"]:hover {
+            opacity: 1;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #3b82f6; /* blue-500 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #3b82f6; /* blue-500 */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .result-card {
+            background-color: #1e3a8a; /* blue-900 */
+        }
+        .result-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen p-4">
+
+    <main class="w-full max-w-4xl bg-white rounded-2xl shadow-lg p-6 md:p-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-slate-800">Saiba definir suas metas de vendas com nossa</h1>
+            <h2 class="text-3xl md:text-4xl font-bold text-emerald-500 mt-1">Calculadora de Resultados</h2>
+        </div>
+
+        <!-- Main Content: Calculator -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Left Column: Parameters -->
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                <h3 class="text-xl font-semibold text-slate-700 mb-6">Parâmetros</h3>
+                
+                <!-- Input: Investimento Mensal -->
+                <div class="mb-5">
+                    <label for="investimento" class="block text-sm font-medium text-slate-600 mb-1">Investimento Mensal</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
+                        <input type="number" id="investimento" value="4000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+
+                <!-- Input: Custo por Lead -->
+                <div class="mb-5">
+                    <label for="cpl" class="block text-sm font-medium text-slate-600 mb-1">Custo por Lead (CPL)</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
+                        <input type="number" id="cpl" value="25" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+
+                <!-- Slider: Taxa de Agendamento -->
+                <div class="mb-5">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="taxaAgendamento" class="text-sm font-medium text-slate-600">Taxa de Agendamento</label>
+                        <span id="taxaAgendamentoValue" class="text-sm font-bold text-blue-600">25%</span>
+                    </div>
+                    <input type="range" id="taxaAgendamento" min="0" max="100" value="25" class="w-full">
+                </div>
+
+                <!-- Slider: Taxa de Comparecimento -->
+                <div class="mb-5">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="taxaComparecimento" class="text-sm font-medium text-slate-600">Taxa de Comparecimento</label>
+                        <span id="taxaComparecimentoValue" class="text-sm font-bold text-blue-600">50%</span>
+                    </div>
+                    <input type="range" id="taxaComparecimento" min="0" max="100" value="50" class="w-full">
+                </div>
+
+                <!-- Slider: Taxa de Conversão -->
+                <div class="mb-5">
+                    <div class="flex justify-between items-center mb-1">
+                        <label for="taxaConversao" class="text-sm font-medium text-slate-600">Taxa de Conversão (Venda)</label>
+                        <span id="taxaConversaoValue" class="text-sm font-bold text-blue-600">40%</span>
+                    </div>
+                    <input type="range" id="taxaConversao" min="0" max="100" value="40" class="w-full">
+                </div>
+
+                <!-- Input: Ticket Médio -->
+                <div>
+                    <label for="ticketMedio" class="block text-sm font-medium text-slate-600 mb-1">Ticket Médio</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">R$</span>
+                        <input type="number" id="ticketMedio" value="2000" class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Results -->
+            <div class="result-card text-white p-6 rounded-xl flex flex-col">
+                <h3 class="text-xl font-semibold text-center mb-4">RESULTADO MENSAL</h3>
+                
+                <div class="result-card-grid mb-6">
+                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                        <div id="resultLeads" class="text-3xl font-bold">160</div>
+                        <div class="text-sm opacity-80">LEADS</div>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                        <div id="resultOportunidades" class="text-3xl font-bold">40</div>
+                        <div class="text-sm opacity-80">OPORTUNIDADES</div>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                        <div id="resultComparecimento" class="text-3xl font-bold">20</div>
+                        <div class="text-sm opacity-80">COMPARECIMENTOS</div>
+                    </div>
+                    <div class="bg-blue-800 p-4 rounded-lg text-center">
+                        <div id="resultClientes" class="text-3xl font-bold">8</div>
+                        <div class="text-sm opacity-80">CLIENTES</div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-800/70 p-4 rounded-lg flex-grow">
+                    <h4 class="font-semibold mb-3 text-center">Resumo do Funil de Vendas</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between">
+                            <span class="opacity-80">Faturamento</span>
+                            <span id="resultFaturamento" class="font-semibold">R$ 16.000</span>
+                        </div>
+                        <hr class="border-blue-700">
+                        <div class="flex justify-between">
+                            <span class="opacity-80">Lucro</span>
+                            <span id="resultLucro" class="font-semibold">R$ 12.000</span>
+                        </div>
+                        <hr class="border-blue-700">
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-lg font-bold">ROI</span>
+                            <span id="resultROI" class="text-2xl font-bold text-emerald-400">300%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer / CTA -->
+        <div class="text-center mt-8">
+            <button id="ctaButton" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform transform hover:scale-105 shadow-md">
+                CADASTRE-SE E RECEBA O LINK
+            </button>
+            <div class="mt-4 flex justify-center">
+                <svg class="h-8 w-auto text-slate-400" fill="none" viewBox="0 0 125 34" xmlns="http://www.w3.org/2000/svg"><path d="M41.333 22.12H29.613c-2.28 0-4.133 1.853-4.133 4.133v3.467c0 2.28 1.853 4.133 4.133 4.133h11.72c2.28 0 4.133-1.853 4.133-4.133v-3.467c0-2.28-1.853-4.133-4.133-4.133Zm-11.72 9.4c-1.32 0-2.4-1.08-2.4-2.4v-3.467c0-1.32 1.08-2.4 2.4-2.4h11.72c1.32 0 2.4 1.08 2.4 2.4v3.467c0 1.32-1.08 2.4-2.4 2.4H29.613Zm24.44-19.866c2.28 0 4.133 1.853 4.133 4.133v2.8c0 2.28-1.853 4.133-4.133 4.133H42.333c-2.28 0-4.133-1.853-4.133-4.133v-2.8c0-2.28 1.853-4.133 4.133-4.133h11.72Zm0 9.333c1.32 0 2.4-1.08 2.4-2.4v-2.8c0-1.32-1.08-2.4-2.4-2.4H42.333c-1.32 0-2.4 1.08-2.4 2.4v2.8c0 1.32 1.08 2.4 2.4 2.4h11.72ZM24.44 1.88h-2.8c-2.28 0-4.133 1.853-4.133 4.133v11.72c0 2.28 1.853 4.133 4.133 4.133h2.8c2.28 0 4.133-1.853 4.133-4.133V6.013c0-2.28-1.853-4.133-4.133-4.133Zm-2.8 18.12c-1.32 0-2.4-1.08-2.4-2.4V6.013c0-1.32 1.08-2.4 2.4-2.4h2.8c1.32 0 2.4 1.08 2.4 2.4v11.72c0 1.32-1.08 2.4-2.4 2.4h-2.8Z" fill="#292D32"></path><path d="M72.013 33.853c4.56 0 8.267-3.707 8.267-8.266 0-4.56-3.707-8.267-8.267-8.267s-8.267 3.707-8.267 8.267c0 4.56 3.707 8.266 8.267 8.266Zm0-14.8c3.6 0 6.533 2.933 6.533 6.533s-2.933 6.533-6.533 6.533-6.533-2.933-6.533-6.533 2.933-6.533 6.533-6.533Zm24.44 14.8c4.56 0 8.267-3.707 8.267-8.266 0-4.56-3.707-8.267-8.267-8.267-4.56 0-8.267 3.707-8.267 8.267 0 4.56 3.707 8.266 8.267 8.266Zm0-14.8c3.6 0 6.533 2.933 6.533 6.533s-2.933 6.533-6.533 6.533-6.533-2.933-6.533-6.533 2.933-6.533 6.533-6.533Zm28.52-1.733v16.533h-1.733V17.32h-6.267v-1.733h14.533v1.733h-6.533Z" fill="#292D32"></path></svg>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for CTA -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-sm w-full text-center">
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Cadastro em Breve!</h3>
+            <p class="text-slate-600 mb-6">Esta funcionalidade está em desenvolvimento. Em breve, você poderá receber as simulações por e-mail!</p>
+            <button id="closeModal" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition">Entendi</button>
+        </div>
+    </div>
+
+
+    <script>
+        // --- DOM Element References ---
+        const elements = {
+            investimento: document.getElementById('investimento'),
+            cpl: document.getElementById('cpl'),
+            taxaAgendamento: document.getElementById('taxaAgendamento'),
+            taxaComparecimento: document.getElementById('taxaComparecimento'),
+            taxaConversao: document.getElementById('taxaConversao'),
+            ticketMedio: document.getElementById('ticketMedio'),
+            taxaAgendamentoValue: document.getElementById('taxaAgendamentoValue'),
+            taxaComparecimentoValue: document.getElementById('taxaComparecimentoValue'),
+            taxaConversaoValue: document.getElementById('taxaConversaoValue'),
+            resultLeads: document.getElementById('resultLeads'),
+            resultOportunidades: document.getElementById('resultOportunidades'),
+            resultComparecimento: document.getElementById('resultComparecimento'),
+            resultClientes: document.getElementById('resultClientes'),
+            resultFaturamento: document.getElementById('resultFaturamento'),
+            resultLucro: document.getElementById('resultLucro'),
+            resultROI: document.getElementById('resultROI'),
+            ctaButton: document.getElementById('ctaButton'),
+            modal: document.getElementById('modal'),
+            closeModal: document.getElementById('closeModal'),
+        };
+
+        // --- Helper Functions ---
+        const formatCurrency = (value) => {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+        };
+
+        const formatPercent = (value) => {
+            // Handles NaN and Infinity by showing 0%
+            return isFinite(value) ? `${value.toFixed(1).replace('.0','')}%` : '0%';
+        };
+
+        // --- Main Calculation Logic ---
+        function calculateResults() {
+            // 1. Get values from inputs, ensuring they are numbers
+            const investimento = parseFloat(elements.investimento.value) || 0;
+            const cpl = parseFloat(elements.cpl.value) || 0;
+            const taxaAgendamento = parseFloat(elements.taxaAgendamento.value) || 0;
+            const taxaComparecimento = parseFloat(elements.taxaComparecimento.value) || 0;
+            const taxaConversao = parseFloat(elements.taxaConversao.value) || 0;
+            const ticketMedio = parseFloat(elements.ticketMedio.value) || 0;
+
+            // 2. Perform calculations based on the PRD formulas
+            const leads = cpl > 0 ? investimento / cpl : 0;
+            const oportunidades = leads * (taxaAgendamento / 100);
+            const comparecimentos = oportunidades * (taxaComparecimento / 100);
+            const clientes = comparecimentos * (taxaConversao / 100);
+            const faturamento = clientes * ticketMedio;
+            const lucro = faturamento - investimento;
+            const roi = investimento > 0 ? (lucro / investimento) * 100 : 0;
+
+            // 3. Update the UI with the new results
+            updateUI({
+                leads,
+                oportunidades,
+                comparecimentos,
+                clientes,
+                faturamento,
+                lucro,
+                roi
+            });
+        }
+
+        // --- UI Update Function ---
+        function updateUI(results) {
+            elements.resultLeads.textContent = Math.round(results.leads);
+            elements.resultOportunidades.textContent = Math.round(results.oportunidades);
+            elements.resultComparecimento.textContent = Math.round(results.comparecimentos);
+            elements.resultClientes.textContent = Math.round(results.clientes);
+            elements.resultFaturamento.textContent = formatCurrency(results.faturamento);
+            elements.resultLucro.textContent = formatCurrency(results.lucro);
+            elements.resultROI.textContent = formatPercent(results.roi);
+
+            // Update slider percentage displays
+            elements.taxaAgendamentoValue.textContent = `${elements.taxaAgendamento.value}%`;
+            elements.taxaComparecimentoValue.textContent = `${elements.taxaComparecimento.value}%`;
+            elements.taxaConversaoValue.textContent = `${elements.taxaConversao.value}%`;
+        }
+        
+        // --- Event Listeners ---
+        const inputsToListen = [
+            elements.investimento,
+            elements.cpl,
+            elements.taxaAgendamento,
+            elements.taxaComparecimento,
+            elements.taxaConversao,
+            elements.ticketMedio
+        ];
+
+        // Attach a listener to each input element
+        inputsToListen.forEach(input => {
+            input.addEventListener('input', calculateResults);
+        });
+
+        // CTA Modal listeners
+        elements.ctaButton.addEventListener('click', () => {
+            elements.modal.classList.remove('hidden');
+        });
+        elements.closeModal.addEventListener('click', () => {
+            elements.modal.classList.add('hidden');
+        });
+        // Also close modal if clicking on the background
+        elements.modal.addEventListener('click', (event) => {
+            if (event.target === elements.modal) {
+                elements.modal.classList.add('hidden');
+            }
+        });
+
+
+        // --- Initial Calculation on Page Load ---
+        window.onload = calculateResults;
+
+    </script>
+</body>
+</html>
